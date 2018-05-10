@@ -1,0 +1,66 @@
+.dt-button{
+	background-color: #607D8B;
+	color: #fff;
+	padding: 7px 12px;
+	margin-right: 5px;
+	text-decoration: none;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	border: none;
+	font-size: 13px;
+	outline: none;
+	float: left;
+}
+
+.dt-button:hover{
+	background-color: #607DBB;
+	color: #fff
+}
+
+#frmFileUpload{
+	width: 100%;
+}
+
+.date-form{
+	border-top: 0;
+}
+.table_mod{
+	overflow-x:auto;
+}
+
+@media(max-width: 768px){
+	.content-wrapper{
+		margin-top: 8% !important;
+	}
+	.main-sidebar{
+		position: absolute !important;
+	}
+}
+
+table tr{
+	cursor: pointer;
+}
+
+.custom-addon-button{
+	border: 0;
+	background-color: transparent;
+}
+
+.breadcrumb li a:hover{
+	cursor: pointer;
+}
+
+.list-group-item{
+	border-bottom: none !important;
+}
+
+@media(min-width: 769px) {
+	.custom-list-item {
+		padding-top: 0;
+		padding-bottom: 4%;
+		margin-bottom: 3%;
+	}
+}
