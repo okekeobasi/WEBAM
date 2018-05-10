@@ -33,26 +33,47 @@ function setTimeType(){
 }
 
 function getChartJs(type, date, time) {
-
-        var config = {
-            type: type,
-            data: {
-                datasets: [
-                    {
-                        label: 'Attendance',
-                        data: time,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                    }
-                ],
-                
-                labels: date
+        if(type == "line"){
+            var config = {
+                type: type,
+                data: {
+                    datasets: [
+                        {
+                            label: 'Attendance',
+                            backgroundColor     : '#839dbc',
+                            data: time,
+                        }
+                    ],
+                    labels: date
+                }
+            }
+        }else {
+            var config = {
+                type: type,
+                data: {
+                    datasets: [
+                        {
+                             label: 'Attendance',
+                             data: time,
+                             backgroundColor: [
+                                 '#9c8b3a',
+                                 '#800ff5',
+                                 '#f5481d',
+                                 '#d2f8a2',
+                                 '#f54061',
+                                 '#0df527',
+                                 '#c4adf5',
+                                 '#f56954',
+                                 '#00a65a',
+                                 '#f39c12',
+                                 '#00c0ef',
+                                 '#3c8dbc',
+                                 '#d2d6de',
+                             ],
+                        }
+                    ],
+                    labels: date
+                }
             }
         }
         return config;
