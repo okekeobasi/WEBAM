@@ -1,70 +1,70 @@
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <!--  <h3 class="box-title">Today's Attendance</h3>-->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <!-- Date and time range -->
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>Choose Date:</label>
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+<div class="active tab-pane" id="activity">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <!--  <h3 class="box-title">Today's Attendance</h3>-->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <!-- Date and time range -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Choose Date:</label>
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
                                          <span>
                                            <i class="fa fa-calendar"></i> Date range picker
                                          </span>
-                                        <i class="fa fa-caret-down"></i>
-                                    </button>
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pull-right">
-                            @if($clients->roleId == 1)
-                                <a href="{{route('admin.clockIn',$clients->staffId)}}">
-                                    @if(isset($testAttendance[0]->time_in))
-                                        <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
-                                    @else
-                                        <button class="btn btn-default btn-lg">Clock In</button>
-                                    @endif
-                                </a>
-                                <a href="{{route('admin.clockOut',$clients->staffId)}}">
-                                    @if(isset($testAttendance[0]->time_out))
-                                        @if($testAttendance[0]->time_out != date('00:00:00'))
-                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                            <div class="pull-right">
+                                @if($clients->roleId == 1)
+                                    <a href="{{route('admin.clockIn',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_in))
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
                                         @else
-                                            <button class="btn btn-default btn-lg">Clock Out</button>
+                                            <button class="btn btn-default btn-lg">Clock In</button>
                                         @endif
-                                    @else
-                                        <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
-                                    @endif
-                                </a>
-                            @else
-                                <a href="{{route('employee.clockIn',$clients->staffId)}}">
-                                    @if(isset($testAttendance[0]->time_in))
-                                        <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
-                                    @else
-                                        <button class="btn btn-default btn-lg">Clock In</button>
-                                    @endif
-                                </a>
-                                <a href="{{route('employee.clockOut',$clients->staffId)}}">
-                                    @if(isset($testAttendance[0]->time_out))
-                                        @if($testAttendance[0]->time_out != date('00:00:00'))
-                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                    </a>
+                                    <a href="{{route('admin.clockOut',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_out))
+                                            @if($testAttendance[0]->time_out != date('00:00:00'))
+                                                <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                            @else
+                                                <button class="btn btn-default btn-lg">Clock Out</button>
+                                            @endif
                                         @else
-                                            <button class="btn btn-default btn-lg">Clock Out</button>
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
                                         @endif
-                                    @else
-                                        <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
-                                    @endif
-                                </a>
-                            @endif
+                                    </a>
+                                @else
+                                    <a href="{{route('employee.clockIn',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_in))
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
+                                        @else
+                                            <button class="btn btn-default btn-lg">Clock In</button>
+                                        @endif
+                                    </a>
+                                    <a href="{{route('employee.clockOut',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_out))
+                                            @if($testAttendance[0]->time_out != date('00:00:00'))
+                                                <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                            @else
+                                                <button class="btn btn-default btn-lg">Clock Out</button>
+                                            @endif
+                                        @else
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                        @endif
+                                    </a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="box box-danger">
                             <div class="box-header with-border">
                                 {{--<div class="box-tools pull-right">
@@ -73,13 +73,15 @@
                                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                 </div>--}}
                                 <select id="chart" onclick="setChartType();">
-                                    <option>Line</option>
-                                    <option>Pie</option>
-                                    <option>Doughnut</option>
-                                    <option>Bar</option>
-                                    <option>Radar</option>
+                                    <option>line</option>
+                                    <option>pie</option>
+                                    <option>doughnut</option>
+                                    <option>bar</option>
                                 </select>
 
+                                <a class="dt-button buttons-html5 pull-right" tabindex="0" style="margin-left: 1%; cursor: pointer;" onclick="export_chart();">
+                                    <span>Export</span>
+                                </a>
                                 <select id="time" class="pull-right" onclick="setTimeType();">
                                     <option>In</option>
                                     <option>Out</option>
@@ -98,7 +100,6 @@
                                 <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Method</th>
                                     <th>Time In</th>
                                     <th>Time Out</th>
                                 </tr>
@@ -107,13 +108,6 @@
                                 @foreach($Attendance as $row)
                                     <tr>
                                         <td>{{$row->date}}</td>
-                                        <td>
-                                            @if(strtolower($row->method) == "online")
-                                                <span class="label label-primary">{{$row->method}}</span>
-                                            @else
-                                                <span class="label label-success">{{$row->method}}</span>
-                                            @endif
-                                        </td>
                                         <td>{{$row->time_in}}</td>
                                         <td>{{$row->time_out}}</td>
                                     </tr>
@@ -122,7 +116,6 @@
                                 <tfoot>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Method</th>
                                     <th>Time In</th>
                                     <th>Time Out</th>
                                 </tr>
@@ -130,14 +123,13 @@
                             </table>
                         </div>
                     </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
+                <!-- /.box -->
             </div>
-            <!-- /.box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-</section>
+    </section>
+</div>
+@include('layouts.custom_chartjs');
 <!-- /.tab-pane -->
-
-@include('layouts.custom_chartjs')

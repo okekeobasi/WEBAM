@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/','AdminLoginController@showLoginForm');
-
+Route::get('/api/dashboard', 'Api\AdminAPIController@testDate')->name('api.test');
 
 Route::prefix('/admin')->group(function(){
     Route::get('/login','AdminLoginController@showLoginForm')->name('admin.showLogin');
@@ -22,8 +22,10 @@ Route::prefix('/admin')->group(function(){
 
     Route::group(['middleware' => ['adminSession']], function() {
         Route::get('/','AdminController@home')->name('admin.dashboard');
+        Route::get('/api/{date?}', 'Api\AdminAPIController@dashboardDate')->name('api.dashboard');
         Route::get('/{staffId}/in','LogController@ClockIn')->name('admin.clockIn');
         Route::get('/{staffId}/out','LogController@ClockOut')->name('admin.clockOut');
+
         Route::prefix('/employee')->group(function () {
             Route::get('/records', 'AdminController@showEmployeeRecords')->name('employee.rec');
             Route::get('/biometrics', 'AdminController@showEmployeeBiometrics')->name('employee.bio');
