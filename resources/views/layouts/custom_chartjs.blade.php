@@ -83,4 +83,9 @@ function resetCanvas(){
     $('#canvas').remove(); // this is my <canvas> element
     $('#graph-container').append('<canvas id="canvas"><canvas>');
 }
+
+function export_chart() {
+    var url_base64jp = document.getElementById("canvas").toDataURL("image/jpg");
+    window.open(url_base64jp);
+}
 </script>

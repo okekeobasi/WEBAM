@@ -72,12 +72,17 @@
                                     </button>
                                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                 </div>--}}
-                                <select id="chart" onclick="changeFunc();">
+                                <select id="chart" onclick="setChartType();">
                                     <option>Line</option>
                                     <option>Pie</option>
                                     <option>Doughnut</option>
                                     <option>Bar</option>
                                     <option>Radar</option>
+                                </select>
+
+                                <select id="time" class="pull-right" onclick="setTimeType();">
+                                    <option>In</option>
+                                    <option>Out</option>
                                 </select>
                             </div>
                             <div class="box-body">
@@ -134,3 +139,5 @@
     </div>
 </section>
 <!-- /.tab-pane -->
+
+@include('layouts.custom_chartjs')

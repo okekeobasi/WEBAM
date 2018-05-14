@@ -22,7 +22,36 @@ class AdminController extends Controller
         $testAttendance = DB::select('select * from attendance where date = ? and user_id = ?',
             [Carbon::today('Africa/Lagos')->toDateString(), session()->get('staffId')]);
 
-        return view('admin.dashboard', compact('Attendance','testAttendance'));
+        $date_array = "[";
+        $time_in_array = "[";
+        $time_out_array = "[";
+        $i = 1;
+        foreach ($Attendance as $row){
+            $date_array .= "'$row->date'";
+
+            $d = strtotime($row->time_in);
+            $time = date('H',$d);
+            $time_in_array .= "'$time'";
+
+            $d = strtotime($row->time_out);
+            $time = date('H',$d);
+            $time_out_array .= "'$time'";
+
+            if($i < sizeof($Attendance)){
+                $date_array .= ",";
+                $time_in_array .= ",";
+                $time_out_array .= ",";
+            }
+            $i++;
+        }
+        $date_array .= "]";
+        $time_in_array .= "]";
+        $time_out_array .= "]";
+
+        return view('admin.dashboard', compact('user','roles', 'Attendance', 'testAttendance', 'id',
+            'date_array', 'time_in_array', 'time_out_array'));
+
+//        return view('admin.dashboard', compact('Attendance','testAttendance'));
     }
 
     /*
@@ -174,11 +203,11 @@ class AdminController extends Controller
      * Report Module
      */
     public function showEmployeeReport(){
-        //
+        return view('admin.report.employee')->with(['report'=>'active', 'report_emp'=>'active']);
     }
 
     public function showAttendanceReport(){
-        //
+        return view('admin.report.attendance')->with(['report'=>'active', 'report_att'=>'active']);
     }
 
     /*

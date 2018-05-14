@@ -19,7 +19,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" name="date" class="form-control date-form" id="datepicker">
+                <input type="text" name="date" class="form-control date-form" id="datepicker" placeholder="{{$Attendance[0]->date or Carbon\Carbon::today('Europe/Berlin')->toDateString()}}">
                 <div class="input-group-addon">
                   <button class="custom-addon-button" name="action" value="search"><i class="fa fa-search" title="Submit"></i></button>
                 </div>
