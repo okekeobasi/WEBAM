@@ -203,7 +203,9 @@ class AdminController extends Controller
      * Report Module
      */
     public function showEmployeeReport(){
-        return view('admin.report.employee')->with(['report'=>'active', 'report_emp'=>'active']);
+        $users = User::all()->sortBy('departmentId');
+        return view('admin.report.employee', compact('users'))
+            ->with(['report'=>'active', 'report_emp'=>'active']);
     }
 
     public function showAttendanceReport(){

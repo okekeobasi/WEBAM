@@ -35,7 +35,7 @@
                                 </select>
 
                                 <a class="dt-button buttons-html5 pull-right" tabindex="0" style="margin-left: 1%; cursor: pointer;" onclick="export_chart();">
-                                    <span>Export</span>
+                                    <span class="glyphicon glyphicon-download-alt"></span> Export
                                 </a>
                                 <select id="time" class="pull-right" onclick="setTimeType();">
                                     <option>In</option>

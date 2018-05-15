@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/','AdminLoginController@showLoginForm');
-Route::get('/api/dashboard', 'Api\AdminAPIController@testDate')->name('api.test');
+Route::prefix('/api')->group(function() {
+    Route::get('/dashboard', 'Api\AdminAPIController@testDate')->name('api.test');
+
+    Route::prefix('/report')->group(function() {
+        Route::get('/employee', 'Api\AdminAPIController@employeeReport')->name('api.employee.report');
+        Route::get('/attendance', 'Api\AdminAPIController@attendanceReport')->name('api.attendance.report');
+    });
+});
 
 Route::prefix('/admin')->group(function(){
     Route::get('/login','AdminLoginController@showLoginForm')->name('admin.showLogin');

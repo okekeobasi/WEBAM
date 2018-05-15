@@ -26,6 +26,15 @@ class AdminAPIController extends Controller
         return response()->json($Attendance);
     }
 
+    public function employeeReport(Request $request){
+        $id = $request->id;
+        if($request->limit == 'all'){
+            return response()->json(Attendance::where('user_id', $id)->get());
+        }
+    }
+
+    public function attendanceReport(){}
+
     public function testDate(Request $request){
         $id = $request->id;
         $startDate = $request->startDate;

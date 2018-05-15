@@ -57,6 +57,10 @@ table tr{
 	border-bottom: none !important;
 }
 
+.panel-body:hover{
+	background-color: white !important;
+}
+
 @media(min-width: 769px) {
 	.custom-list-item {
 		padding-top: 0;
