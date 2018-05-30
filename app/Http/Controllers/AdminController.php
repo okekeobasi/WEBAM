@@ -217,6 +217,16 @@ class AdminController extends Controller
      */
     public function showConfigDepartment(){
         $departments = Department::all();
+        foreach ($departments as $department){
+            $users = User::where('departmentId', $department->id)->get();
+            $len_users = sizeof($users);
+            DB::update('update department SET population = ? WHERE id = ?', [$len_users, $department->id]);
+        }
         return view('admin.config.department.records', compact('departments'));
+    }
+
+    public function showDepartmentScreen($id){
+        $department = Department::find($id);
+        return view('admin.config.department.screen', compact('department'));
     }
 }

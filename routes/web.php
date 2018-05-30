@@ -59,6 +59,7 @@ Route::prefix('/admin')->group(function(){
 
         Route::prefix('/config')->group(function () {
             Route::get('/department', 'AdminController@showConfigDepartment')->name('config.department');
+            Route::get('/screen/{staffId}', 'AdminController@showDepartmentScreen')->name('config.department.scr');
         });
     });
 });

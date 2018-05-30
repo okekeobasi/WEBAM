@@ -1,6 +1,6 @@
 @extends('layouts.table')
 
-@section('title','Manage Attendance Records')
+@section('title','Department Records')
 
 @section('parent','Attendance')
 
@@ -52,4 +52,13 @@
         <th>Status</th>
     </tr>
     </tfoot>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        function foo(num) {
+            var url = 'screen/' + num;
+            window.open(url,'_self');
+        }
+    </script>
 @endsection
