@@ -61,6 +61,10 @@ table tr{
 	background-color: white !important;
 }
 
+.size-chart canvas{
+	max-height: 400px !important;
+}
+
 @media(min-width: 769px) {
 	.custom-list-item {
 		padding-top: 0;

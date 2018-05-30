@@ -4,8 +4,11 @@
     var time_in_array = [];
     var time_out_array = [];
     var generalTime = [];
-    chart_type = 'line'
+    chart_type = 'line';
     timeType = 'In';
+    limit = 'all';
+    var startDate = '';
+    var endDate = '';
 
     $(document).ready(
         function () {
@@ -14,27 +17,12 @@
     );
 
     function setChartType(id){
-        chart_name = '#chart' + id;
-        chart_type = $(chart_name).find(':selected').val();
-        // generalTime = time_in_array;
-        console.log(date_array, generalTime);
 
-        resetCanvas(id);
-        canvas = '#canvas' + id;
-
-        time_name = '#time' + id
-        timeType = $(time_name).find(':selected').val();
         openChart(id)
     }
 
     function setTimeType(id){
-        time_name = '#time' + id
-        timeType = $(time_name).find(':selected').val();
-        console.log(date_array, time_out_array)
 
-        resetCanvas(id);
-
-        canvas = '#canvas' + id;
         openChart(id)
     }
 
@@ -87,7 +75,9 @@
                 _method: 'GET',
                 _token: '{{csrf_token()}}',
                 id: id,
-                limit: 'all',
+                limit: limit,
+                startDate: startDate,
+                endDate: endDate
             },
             success: function(object){
                 var new_date = [];
@@ -110,12 +100,18 @@
                 generalTime = time_in_array.slice();
 
                 resetCanvas(id);
-                canvas = '#canvas' + id;
+                canvas = 'canvas' + id + '';
+                console.log(canvas);
+                console.log(document.getElementById(canvas));
 
-                if(timeType == 'In') var myChart = new Chart(document.getElementById(canvas).getContext("2d"),
-                    getChartJs(chart_type, new_date, new_time_in))
-                if(timeType == 'Out') var myChart = new Chart(document.getElementById(canvas).getContext("2d"),
-                    getChartJs(chart_type, new_date, new_time_out))
+                time_name = '#time' + id
+                timeType = $(time_name).find(':selected').val();
+
+                chart_name = '#chart' + id;
+                chart_type = $(chart_name).find(':selected').val();
+
+                if(timeType == 'In') var myChart = new Chart(document.getElementById(canvas).getContext("2d"), getChartJs(chart_type, new_date, new_time_in));
+                if(timeType == 'Out') var myChart = new Chart(document.getElementById(canvas).getContext("2d"), getChartJs(chart_type, new_date, new_time_out))
             },
             dataType: 'json'
         });
@@ -130,15 +126,18 @@
     }
 
     function resetCanvas(id){
-        canvas = '#canvas' + id;
+        canvas = '#canvas' + id + '';
+//        console.log($(canvas));
         container = '#graph-container' + id
-        canvasHTML = '<canvas id="' + canvas + '"><canvas>'
+        canvasHTML = '<canvas id="canvas' + id + '"></canvas>';
+        console.log(canvasHTML, canvas, container);
         $(canvas).remove(); // this is my <canvas> element
         $(container).append(canvasHTML);
+
     }
 
     function export_chart(id) {
-        canvas = '#canvas' + id;
+        canvas = 'canvas' + id + '';
         var url_base64jp = document.getElementById(canvas).toDataURL("image/jpg");
         window.open(url_base64jp);
     }
