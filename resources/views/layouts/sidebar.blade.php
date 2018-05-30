@@ -61,7 +61,7 @@
       </a>
       <ul class="treeview-menu">
         <li class="{{$report_emp}}"><a href="{{route('report.emp')}}">Employee</a></li>
-        <li class="{{$report_att}}"><a href="{{route('report.att')}}">Attendance</a></li>
+        {{--<li class="{{$report_att}}"><a href="{{route('report.att')}}">Attendance</a></li>--}}
       </ul>
     </li>
 
