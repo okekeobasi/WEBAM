@@ -63,6 +63,7 @@ Route::prefix('/admin')->group(function(){
 
         Route::prefix('/config')->group(function () {
             Route::get('/department', 'AdminController@showConfigDepartment')->name('config.department');
+            Route::post('/department', 'AdminController@createDepartment')->name('department.create');
             Route::get('/department/screen/{staffId}', 'AdminController@showDepartmentScreen')->name('config.department.scr');
             Route::post('department/screen/{id}', 'UpdateController@departmentUpdate')->name('department.update');
         });

@@ -47,7 +47,7 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
-                @include('layouts.dashboardActivity')
+                @include('layouts.dashboard.mainActivity')
 {{--                @include('layouts.activityModal')--}}
                 <!-- /.tab-content -->
                 </div>

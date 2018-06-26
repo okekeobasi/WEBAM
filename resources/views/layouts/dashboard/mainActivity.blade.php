@@ -8,16 +8,61 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <!-- Date and time range -->
-                        <div class="form-group">
-                            <label>Choose Date:</label>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-default pull-right" id="daterange-btn">
-                                     <span>
-                                       <i class="fa fa-calendar"></i> Date range picker
-                                     </span>
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
+                        <div class="row">
+                            <!-- Date and time range -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Choose Date:</label>
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                                         <span>
+                                           <i class="fa fa-calendar"></i> Date range picker
+                                         </span>
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                @if($clients->roleId == 1)
+                                    <a href="{{route('admin.clockIn',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_in))
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
+                                        @else
+                                            <button class="btn btn-default btn-lg">Clock In</button>
+                                        @endif
+                                    </a>
+                                    <a href="{{route('admin.clockOut',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_out))
+                                            @if($testAttendance[0]->time_out != date('00:00:00'))
+                                                <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                            @else
+                                                <button class="btn btn-default btn-lg">Clock Out</button>
+                                            @endif
+                                        @else
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                        @endif
+                                    </a>
+                                @else
+                                    <a href="{{route('employee.clockIn',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_in))
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock In</button>
+                                        @else
+                                            <button class="btn btn-default btn-lg">Clock In</button>
+                                        @endif
+                                    </a>
+                                    <a href="{{route('employee.clockOut',$clients->staffId)}}">
+                                        @if(isset($testAttendance[0]->time_out))
+                                            @if($testAttendance[0]->time_out != date('00:00:00'))
+                                                <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                            @else
+                                                <button class="btn btn-default btn-lg">Clock Out</button>
+                                            @endif
+                                        @else
+                                            <button disabled="true" class="btn btn-default btn-lg">Clock Out</button>
+                                        @endif
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="box box-danger">
@@ -86,5 +131,5 @@
         </div>
     </section>
 </div>
-@include('layouts.custom_chartjs');
+@include('layouts.custom_chartjs')
 <!-- /.tab-pane -->

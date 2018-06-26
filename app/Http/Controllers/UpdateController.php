@@ -53,7 +53,13 @@ class UpdateController extends Controller
      */
     public function upload($input){
         //The file path pathinfo($file_path)
-        $path = Storage::putFile('employees', $input->file('pic'));
+        if($input->file('pic') === null){
+            $path = "employees/usericon.png";
+        }
+        else {
+            $path = Storage::putFile('employees', $input->file('pic')) or  "employees/usericon.png";
+        }
+
         return $path;
     }
 
@@ -72,7 +78,7 @@ class UpdateController extends Controller
             //Is the email extension the default email
             if(strpos($request->email, "@activedgetechnologies.com") !== false) {
                 $request->validate([
-                    'email' => 'required|string|max:255|unique:users',
+                    'email' => 'required|string|max:255',
                 ]);
             }//If not then return an error
             else return redirect()->back()->withErrors(['email'=>'Wrong Email Address'])
@@ -84,7 +90,7 @@ class UpdateController extends Controller
 
         //Validate the Request with these rules
         $request->validate([
-            'username' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'password2' => 'required|string|min:8',
             'number' => 'required|min:10',
@@ -102,7 +108,7 @@ class UpdateController extends Controller
         //Insert into DB function
         $this->insert($request, $id);
 
-        return redirect()->route('employee.cre');
+        return redirect()->route('employee.scr', $id);
     }
 
     public function departmentUpdate(Request $request, $id){

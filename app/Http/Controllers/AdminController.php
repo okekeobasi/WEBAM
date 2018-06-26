@@ -230,4 +230,22 @@ class AdminController extends Controller
         $Attendance = Attendance::where('department_id', $id)->get();
         return view('admin.config.department.screen', compact('department', 'Attendance', 'id'));
     }
+
+    public function createDepartment(Request $request){
+        $departments = Department::all();
+
+        $request->validate([
+            'department' => 'required|string|max:255|unique:department',
+        ]);
+        $department = new Department();
+
+        $department->department = $request->department;
+        $department->resumption = $request->resumption;
+        $department->population = 0;
+        $department->closing = $request->closing;
+        $department->status = strtolower($request->status);
+        $department ->save();
+
+        return view('admin.config.department.records', compact('departments'));
+    }
 }

@@ -7,7 +7,7 @@
 @section('current','Records')
 
 @section('box-mods')
-    <a href="#">
+    <a data-toggle="modal" data-target="#create">
         <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Create New</button>
     </a>
     <hr>
@@ -54,11 +54,30 @@
     </tfoot>
 @endsection
 
+@section('modal')
+    @include('layouts.department.createModal')
+@endsection
+
 @section('js')
     <script type="text/javascript">
         function foo(num) {
             var url = 'department/screen/' + num;
             window.open(url,'_self');
         }
+    </script>
+@endsection
+
+@section('custom_js')
+    <script>
+        $('#resumption_timepicker').timepicker({
+            defaultTime: '{{$department->resumption}}',
+            showSeconds: true,
+            showMeridian: false
+        });
+        $('#closing_timepicker').timepicker({
+            defaultTime: '{{$department->closing}}',
+            showSeconds: true,
+            showMeridian: false
+        });
     </script>
 @endsection

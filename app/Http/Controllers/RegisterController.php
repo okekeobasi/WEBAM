@@ -54,12 +54,14 @@ class RegisterController extends Controller
      */
     public function upload($input){
         //The file path pathinfo($file_path)
-        if($input->file == null){
+
+        if($input->file('pic') === null){
             $path = "employees/usericon.png";
         }
         else {
-            $path = Storage::putFile('employees', $input->file('pic'));
+            $path = Storage::putFile('employees', $input->file('pic')) or  "employees/usericon.png";
         }
+
         return $path;
     }
 

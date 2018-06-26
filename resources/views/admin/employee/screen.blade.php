@@ -67,10 +67,10 @@
                     @endforeach
                 @endif
                 <div class="tab-content">
-                    @include('layouts.activityModal')
-                    @include('layouts.biometricsModal')
-                    @include('layouts.manageModal')
-                    @include('layouts.viewerModal')
+                    @include('layouts.employee.activityModal')
+                    @include('layouts.employee.biometricsModal')
+                    @include('layouts.employee.manageModal')
+                    @include('layouts.employee.viewerModal')
                     <!-- /.tab-content -->
                 </div>
                 <!-- /.nav-tabs-custom -->
