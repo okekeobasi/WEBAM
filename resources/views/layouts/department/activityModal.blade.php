@@ -37,7 +37,7 @@
                                 <a class="dt-button buttons-html5 pull-right" tabindex="0" style="margin-left: 1%; cursor: pointer;" onclick="export_chart();">
                                     <span class="glyphicon glyphicon-download-alt"></span> Export
                                 </a>
-                                <select id="time" class="pull-right" onclick="setTimeType();">
+                                <select id="time" class="pull-right" onclick="openChart();">
                                     <option>In</option>
                                     <option>Out</option>
                                 </select>
@@ -55,14 +55,19 @@
                                 <thead>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Username</th>
                                     <th>Time In</th>
                                     <th>Time Out</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($Attendance as $row)
-                                    <tr>
+                                    @php
+                                        $new_user = App\User::find($row->user_id);
+                                    @endphp
+                                    <tr onclick="foo({{$new_user->staffId}})">
                                         <td>{{$row->date}}</td>
+                                        <td>{{$new_user->username}}</td>
                                         <td>{{$row->time_in}}</td>
                                         <td>{{$row->time_out}}</td>
                                     </tr>
@@ -71,6 +76,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Username</th>
                                     <th>Time In</th>
                                     <th>Time Out</th>
                                 </tr>
@@ -86,5 +92,15 @@
         </div>
     </section>
 </div>
-{{--@include('layouts.custom_chartjs');--}}
+
+@include('layouts.department.custom_chartjs')
 <!-- /.tab-pane -->
+
+@section('js')
+    <script type="text/javascript">
+        function foo(num) {
+            var url = 'http://localhost:8000/admin/employee/screen/' + num;
+            window.open(url,'_self');
+        }
+    </script>
+@endsection

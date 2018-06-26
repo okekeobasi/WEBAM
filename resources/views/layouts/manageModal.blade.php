@@ -7,21 +7,24 @@
             <div class="form-group">
                 <label for="inputfname" class="col-sm-2 control-label">First name</label>
                 <div class="col-sm-10">
-                    <input type="text" id="fname" class="form-control" name="firstname" placeholder="First name..." required autofocus>
+                    <input type="text" id="fname" class="form-control" name="firstname" placeholder="First name..."
+                           value="{{$user->firstname}}" required autofocus>
                 </div>
             </div>
             <!-- Last name -->
             <div class="form-group">
                 <label for="inputlname" class="col-sm-2 control-label">Last name</label>
                 <div class="col-sm-10">
-                    <input type="text" id="lname" class="form-control" name="lastname" placeholder="Last name..." required autofocus>
+                    <input type="text" id="lname" class="form-control" name="lastname" placeholder="Last name..."
+                           value="{{$user->lastname}}" required autofocus>
                 </div>
             </div>
             <!-- Username -->
             <div class="form-group">
                 <label for="inputlname" class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-10">
-                    <input type="text" id="uname" class="form-control" name="username" placeholder="Username..." required autofocus>
+                    <input type="text" id="uname" class="form-control" name="username" placeholder="Username..."
+                           value="{{$user->username}}" required autofocus>
                 </div>
             </div>
             <!-- Email -->
@@ -29,7 +32,8 @@
                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" id="email" class="form-control" name="email" placeholder="Email..." required autofocus>
+                        <input type="text" id="email" class="form-control" name="email" placeholder="Email..."
+                               value="{{$user->email}}" required autofocus>
                         <span class="input-group-addon">@activedgetechnologies.com</span>
                     </div>
                 </div>
@@ -48,7 +52,8 @@
             <div class="form-group">
                 <label for="inputphone" class="col-sm-2 control-label">Phone No.</label>
                 <div class="col-sm-10">
-                    <input type="number" id="number" name="number" class="form-control" placeholder="Phone No..." required autofocus>
+                    <input type="number" id="number" name="number" class="form-control" placeholder="Phone No..."
+                           value="{{$user->phone}}" required autofocus>
                 </div>
             </div>
             <!-- Password -->

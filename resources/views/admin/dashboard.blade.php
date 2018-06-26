@@ -18,7 +18,7 @@
 
                     <ul class="list-group list-group-unbordered container-fluid">
                         <li class="list-group-item custom-list-item">
-                            <b>Email</b> <a class="pull-right" style="font-size: smaller">{{$clients->email}}</a>
+                            <b>Email</b> <a style="font-size: smaller">{{$clients->email}}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Department</b> <a class="pull-right">

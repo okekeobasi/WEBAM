@@ -57,7 +57,7 @@
 @section('js')
     <script type="text/javascript">
         function foo(num) {
-            var url = 'screen/' + num;
+            var url = 'department/screen/' + num;
             window.open(url,'_self');
         }
     </script>

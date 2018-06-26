@@ -12,6 +12,15 @@ use App\Http\Controllers\Controller;
 
 class AdminAPIController extends Controller
 {
+    public function testDate(Request $request){
+        $id = $request->id;
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        $Attendance = DB::select("SELECT * FROM attendance WHERE user_id = ? AND date >= ? AND date <= ? ",
+            [$id, $startDate, $endDate]);
+        return response()->json($Attendance);
+    }
+
     public function dashboardDate($date, Request $request){
         if(strpos($request->link, 'employee') !== false){
             $id = $request->id;
@@ -35,12 +44,10 @@ class AdminAPIController extends Controller
 
     public function attendanceReport(){}
 
-    public function testDate(Request $request){
+    public function getDepartmentDate(Request $request){
         $id = $request->id;
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
-        $Attendance = DB::select("SELECT * FROM attendance WHERE user_id = ? AND date >= ? AND date <= ? ",
-            [$id, $startDate, $endDate]);
-        return response()->json($Attendance);
+        if($request->limit == 'all'){
+             return response()->json([Attendance::where('department_id', $id)->get(), User::where('departmentId', $id)->get()]);
+        }
     }
 }

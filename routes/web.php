@@ -20,6 +20,10 @@ Route::prefix('/api')->group(function() {
         Route::get('/employee', 'Api\AdminAPIController@employeeReport')->name('api.employee.report');
         Route::get('/attendance', 'Api\AdminAPIController@attendanceReport')->name('api.attendance.report');
     });
+
+    Route::prefix('/config')->group(function () {
+        Route::get('/department', 'Api\AdminAPIController@getDepartmentDate')->name('api.config.department');
+    });
 });
 
 Route::prefix('/admin')->group(function(){
@@ -59,7 +63,8 @@ Route::prefix('/admin')->group(function(){
 
         Route::prefix('/config')->group(function () {
             Route::get('/department', 'AdminController@showConfigDepartment')->name('config.department');
-            Route::get('/screen/{staffId}', 'AdminController@showDepartmentScreen')->name('config.department.scr');
+            Route::get('/department/screen/{staffId}', 'AdminController@showDepartmentScreen')->name('config.department.scr');
+            Route::post('department/screen/{id}', 'UpdateController@departmentUpdate')->name('department.update');
         });
     });
 });

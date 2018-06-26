@@ -1,6 +1,6 @@
 @extends('layouts.table')
 
-@section('title', 'Employee Screen')
+@section('title', 'Department Screen')
 
 @section('parent','Records')
 @section('current','Viewer')
@@ -54,9 +54,9 @@
                     @endforeach
                 @endif
                 <div class="tab-content">
-                {{--@include('layouts.department.ActivityModal')--}}
-                {{--@include('layouts.department.ManageModal')--}}
-                {{--@include('layouts.department.ViewerModal')--}}
+                @include('layouts.department.ActivityModal')
+                @include('layouts.department.ManageModal')
+                @include('layouts.department.viewerModal')
                 <!-- /.tab-content -->
                 </div>
                 <!-- /.nav-tabs-custom -->
@@ -66,3 +66,4 @@
         <!-- /.row -->
     </div>
 @endsection
+

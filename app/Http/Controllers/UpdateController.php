@@ -104,4 +104,15 @@ class UpdateController extends Controller
 
         return redirect()->route('employee.cre');
     }
+
+    public function departmentUpdate(Request $request, $id){
+        $department = Department::find($id);
+
+        $department->department = $request->name;
+        $department->resumption = $request->resumption;
+        $department->closing = $request->closing;
+        $department->status = strtolower($request->status);
+        $department ->save();
+        return redirect()->route('config.department.scr', $id);
+    }
 }

@@ -34,7 +34,7 @@
       <form class="form-horizontal" action="{{route('employee.register')}}"
             method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="box-body">
+        <div class="box-body col-md-6 col-md-offset-2">
           <!-- First name -->
           <div class="form-group">
             <label for="inputfname" class="col-sm-2 control-label">First name</label>
@@ -127,7 +127,7 @@
           </div>
         </div>
         <!-- /.box-body -->
-        <div class="box-footer">
+        <div class="box-footer col-md-6 col-md-offset-2">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn form-control btn-info pull-right">Register</button>
           </div>

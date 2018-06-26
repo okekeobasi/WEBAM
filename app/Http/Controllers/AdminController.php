@@ -227,6 +227,7 @@ class AdminController extends Controller
 
     public function showDepartmentScreen($id){
         $department = Department::find($id);
-        return view('admin.config.department.screen', compact('department'));
+        $Attendance = Attendance::where('department_id', $id)->get();
+        return view('admin.config.department.screen', compact('department', 'Attendance', 'id'));
     }
 }
