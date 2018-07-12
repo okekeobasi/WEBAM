@@ -1,12 +1,12 @@
 <!-- Sidebar user panel (optional) -->
 <div class="user-panel">
     <div class="pull-left image">
-        <img src="{{asset('dist/img/usericon.png')}}" class="img-circle" alt="User Image">
+        <img src="{{Storage::url($clients->file_path)}}" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
         <p>{{$clients->firstname}}</p>
         <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
     </div>
 </div>
 

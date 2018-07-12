@@ -71,8 +71,9 @@
             <label for="inputDepart" class="col-sm-2 control-label">Department</label>
             <div class="col-sm-10">
               <select name="department" class="form-control" required autofocus>
-                <option>Technology</option>
-                <option>Security</option>
+                @foreach($departments as $department)
+                  <option>{{$department->department}}</option>
+                @endforeach
               </select>
             </div>
           </div>

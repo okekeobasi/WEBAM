@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 Route::get('/','AdminLoginController@showLoginForm');
 Route::prefix('/api')->group(function() {
     Route::get('/dashboard', 'Api\AdminAPIController@testDate')->name('api.test');
+    Route::get('/dashboard', 'Api\AdminAPIController@getEmployeeLog')->name('api.employee.log');
 
     Route::prefix('/report')->group(function() {
         Route::get('/employee', 'Api\AdminAPIController@employeeReport')->name('api.employee.report');
@@ -24,6 +25,8 @@ Route::prefix('/api')->group(function() {
     Route::prefix('/config')->group(function () {
         Route::get('/department', 'Api\AdminAPIController@getDepartmentDate')->name('api.config.department');
     });
+
+    Route::get('/search', 'Api\AdminAPIController@sidebarSearch')->name('api.search');
 });
 
 Route::prefix('/admin')->group(function(){
@@ -57,7 +60,7 @@ Route::prefix('/admin')->group(function(){
         });
 
         Route::prefix('/report')->group(function () {
-            Route::get('/employee', 'AdminController@showEmployeeReport')->name('report.emp');
+            Route::get('/employee/{id}', 'AdminController@showEmployeeReport')->name('report.emp');
             Route::get('/attendance', 'AdminController@showAttendanceReport')->name('report.att');
         });
 

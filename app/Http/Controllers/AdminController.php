@@ -21,8 +21,9 @@ class AdminController extends Controller
         $Attendance = Attendance::where('user_id', session()->get('staffId'))->get();
         $testAttendance = DB::select('select * from attendance where date = ? and user_id = ?',
             [Carbon::today('Africa/Lagos')->toDateString(), session()->get('staffId')]);
+        $id = session()->get('staffId');
 
-        $date_array = "[";
+        /*$date_array = "[";
         $time_in_array = "[";
         $time_out_array = "[";
         $i = 1;
@@ -46,10 +47,9 @@ class AdminController extends Controller
         }
         $date_array .= "]";
         $time_in_array .= "]";
-        $time_out_array .= "]";
+        $time_out_array .= "]";*/
 
-        return view('admin.dashboard', compact('user','roles', 'Attendance', 'testAttendance', 'id',
-            'date_array', 'time_in_array', 'time_out_array'));
+        return view('admin.dashboard', compact('user','roles', 'Attendance', 'testAttendance', 'id'));
 
 //        return view('admin.dashboard', compact('Attendance','testAttendance'));
     }
@@ -69,8 +69,9 @@ class AdminController extends Controller
 
     public function createEmployeeRecord(){
         $roles = Role::all();
+        $departments = Department::all();
 
-        return view('admin.employee.new', compact('roles'))
+        return view('admin.employee.new', compact('roles', 'departments'))
             ->with(['employee'=>'active', 'employee_cre'=>'active']);
     }
 
@@ -82,7 +83,7 @@ class AdminController extends Controller
         $testAttendance = DB::select('select * from attendance where date = ? and user_id = ?',
             [Carbon::today('Africa/Lagos')->toDateString(), $id]);
 
-        $date_array = "[";
+       /* $date_array = "[";
         $time_in_array = "[";
         $time_out_array = "[";
         $i = 1;
@@ -106,7 +107,7 @@ class AdminController extends Controller
         }
         $date_array .= "]";
         $time_in_array .= "]";
-        $time_out_array .= "]";
+        $time_out_array .= "]";*/
 
         return view('admin.employee.screen', compact('user','roles', 'Attendance', 'testAttendance', 'id',
             'date_array', 'time_in_array', 'time_out_array'));
@@ -202,9 +203,11 @@ class AdminController extends Controller
     /*
      * Report Module
      */
-    public function showEmployeeReport(){
-        $users = User::all()->sortBy('departmentId');
-        return view('admin.report.employee', compact('users'))
+    public function showEmployeeReport($id){
+        $users_ = User::where('departmentId', $id)->get();
+//        $users = User::find($id);
+//        dd($users_);
+        return view('admin.report.employee', compact('users_', 'id'))
             ->with(['report'=>'active', 'report_emp'=>'active']);
     }
 

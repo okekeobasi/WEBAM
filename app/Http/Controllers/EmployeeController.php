@@ -13,7 +13,8 @@ class EmployeeController extends Controller
         $Attendance = Attendance::where('user_id', session()->get('staffId'))->get();
         $testAttendance = DB::select('select * from attendance where date = ? and user_id = ?',
             [Carbon::today('Europe/Berlin')->toDateString(), session()->get('staffId')]);
+        $id = session()->get('staffId');
 
-        return view('employee.dashboard', compact('Attendance','testAttendance'));
+        return view('employee.dashboard', compact('Attendance','testAttendance', 'id'));
     }
 }

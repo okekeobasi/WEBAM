@@ -17,6 +17,7 @@
         <th>Email</th>
         <th>Department</th>
         <th>Phone</th>
+        <th>Role</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -30,6 +31,7 @@
         <td>{{$user->email}}</td>
         <td>{{App\Department::find($d_id)->department}}</td>
         <td>{{$user->phone}}</td>
+        <td>{{App\Role::find($user->roleId)->role_name}}</td>
         <td>
           @if(strtolower($user->status) == "active")
             <span class="label label-success">{{$user->status}}</span>
@@ -48,6 +50,7 @@
         <th>Email</th>
         <th>Department</th>
         <th>Phone</th>
+        <th>Role</th>
         <th>Status</th>
       </tr>
     </tfoot>

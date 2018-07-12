@@ -99,6 +99,7 @@
                 endDate: endDate
             },
             success: function(item){
+
                 object = item[0];
                 users = item[1];
 
@@ -110,7 +111,7 @@
                     new_date.push(object[z].date);
                 }
 //                console.log(new_date);
-
+                if(limit != 'all') console.log(users);
                 for(i=0; i<users.length; i++){
                     dataset = {};
                     dataset.label = '';
@@ -121,7 +122,6 @@
 
 
                     dataset.label = users[i].username;
-
                     for(j=0; j<object.length; j++){
                         if(users[i].staffId == object[j].user_id){
                             t = new_date[j] + "T" + object[j].time_in;
@@ -140,6 +140,7 @@
 //                    lineChartData.datasets.push(dataset);
                     lineArray.push(dataset);
                     colourIndex++;
+                    console.log(startDate, endDate);
                 }
 
                 date_array = new_date.slice();
@@ -162,7 +163,19 @@
     }
 
     function parseChart() {
-        console.log("hello");
+        var text = $('#daterange-btn').text().trim();
+        text = text.split('-')
+//        console.log("dates: " , text);
+        startDate = text[0].trim();
+        endDate = text[1].trim();
+
+        var d = new Date(startDate)
+        startDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+        d = new Date(endDate)
+        endDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+
+        limit = '';
+        openChart()
     }
 
     function resetCanvas(id){

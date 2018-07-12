@@ -144,5 +144,34 @@
     });
 </script>
 
+<script>
+    function checkSearch(obj) {
+        obj.addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+
+        var text = $('#search-txt').val();
+        if (text.trim() != ""){
+            console.log(text);
+            url = "{{route('api.search')}}"
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data:{
+                    _method: 'GET',
+                    _token: '{{csrf_token()}}',
+                    text: text
+                },
+                success: function(response){
+                    link = "{{url('/admin/employee/screen/')}}" + '/' + response;
+                    window.open(link, '_self');
+                },
+                dataType: 'json'
+            });
+        }
+    }
+</script>
+
 {{--custom css--}}
 @yield('js')

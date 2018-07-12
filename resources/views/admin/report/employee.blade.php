@@ -11,7 +11,8 @@
         <div class="box box-primary">
             <div class="box-body">
                 @php($i = 0)
-                @foreach($users as $user)
+                {{--{{dd($users_)}}--}}
+                @foreach($users_ as $user)
                     <div class="box box-danger">
                         <div class="box-header with-border">
                             <h4 class="panel-title">
@@ -73,5 +74,5 @@
 
 
 @section('custom_js')
-    @include('layouts.employeeReportJs')
+    @include('layouts.report.employeeReportJs')
 @endsection

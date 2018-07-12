@@ -121,8 +121,22 @@
         //
     }
 
-    function parseChart() {
-        console.log("hello");
+    function parseChart(id) {
+        daterangebtn = '#daterange-btn' + id;
+        var text = $(daterangebtn).text().trim();
+        text = text.split('-')
+        console.log(text);
+        startDate = text[0].trim();
+        endDate = text[1].trim();
+
+        var d = new Date(startDate)
+        startDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+        d = new Date(endDate)
+        endDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+
+        limit = '';
+
+        openChart(id)
     }
 
     function resetCanvas(id){
@@ -163,7 +177,7 @@
             },
             function (start, end) {
                 $('#daterange-btn{{$user->staffId}} span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                parseChart();
+                parseChart({{$user->staffId}});
             }
         );
     @endforeach

@@ -1,25 +1,25 @@
 <!-- Sidebar user panel (optional) -->
 <div class="user-panel">
   <div class="pull-left image">
-    <img src="{{asset('dist/img/usericon.png')}}" class="img-circle" alt="User Image">
+    <img src="{{Storage::url($clients->file_path)}}" class="img-circle" alt="User Image">
   </div>
   <div class="pull-left info">
     <p>{{$clients->firstname}}</p>
     <!-- Status -->
-    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
   </div>
 </div>
 
 <!-- search form (Optional) -->
-<form action="#" method="get" class="sidebar-form">
+<div class="sidebar-form">
   <div class="input-group">
-    <input type="text" name="q" class="form-control" placeholder="Employee Search...">
+    <input type="text" name="search-txt" id="search-txt" class="form-control" placeholder="Employee Search..." required>
     <span class="input-group-btn">
-      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+      <button name="search" id="search-btn" class="btn btn-flat" onclick="checkSearch(this)"><i class="fa fa-search"></i>
       </button>
     </span>
   </div>
-</form>
+</div>
 <!-- /.search form -->
 
 <!-- Sidebar Menu -->
@@ -59,8 +59,11 @@
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
-      <ul class="treeview-menu">
-        <li class="{{$report_emp}}"><a href="{{route('report.emp')}}">Employee</a></li>
+      <ul class="{{$report_emp}} treeview-menu">
+        {{--<li class="{{$report_emp}}"><a href="{{route('report.emp')}}">Employee</a></li>--}}
+        @foreach(App\Department::all() as $department)
+          <li class=""><a href="{{route('report.emp', $department->id)}}">{{$department->department}}</a></li>
+        @endforeach
         {{--<li class="{{$report_att}}"><a href="{{route('report.att')}}">Attendance</a></li>--}}
       </ul>
     </li>
