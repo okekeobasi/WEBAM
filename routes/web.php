@@ -70,6 +70,11 @@ Route::prefix('/admin')->group(function(){
             Route::get('/department/screen/{staffId}', 'AdminController@showDepartmentScreen')->name('config.department.scr');
             Route::post('department/screen/{id}', 'UpdateController@departmentUpdate')->name('department.update');
         });
+
+        Route::prefix('/mail')->group(function(){
+            Route::post('/send', 'MailController@sendMail')->name('mail.send');
+            Route::get('/show', 'MailController@showMail')->name('mail.show');
+        });
     });
 });
 

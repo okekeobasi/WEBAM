@@ -43,12 +43,19 @@
                             </a>
                         </li>
                     </ul>
-
-                    <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <h3 class="profile-username text-center">Feedback</h3>
+                    <hr>
+                    <a class="btn btn-success btn-block" onclick="upvote()"><b><i class="fa fa-thumbs-up"></i></b></a>
+                    <hr>
+                    <a class="btn btn-danger btn-block" onclick="downvote()"><b><i class="fa fa-thumbs-down"></i></b></a>
+                </div>
+            </div>
 
         </div>
         <!-- /.col -->
@@ -79,4 +86,76 @@
         </div>
         <!-- /.row -->
     </div>
+@endsection
+
+@section('modal')
+    <div class="modal fade" tabindex="-1" role="dialog" id="passModal" aria-labelledby="passModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Enter your Office Email Password</h4>
+                </div>
+                <div class="modal-body" style="padding-bottom: 15%;">
+                    <input type="password" name="modal_pass" class="form-control" id="modal_pass">
+                    <br>
+                    <button class="pull-right btn btn-primary btn-sm" onclick="feebackModal()">
+                        Submit
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <span>Your password is encrypted and Secure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('custom_js')
+<script>
+    var feedback = '';
+    function upvote(){
+
+        if(confirm('Would you like to send your feedback to {{$user->email}}')){
+            feedback = 'upvote';
+            $('#passModal').modal();
+        }
+
+    }
+
+    function downvote() {
+
+        if(confirm('Would you like to send your feedback to {{$user->email}}')){
+            feedback = 'downvote';
+            $('#passModal').modal();
+        }
+
+    }
+
+    function feebackModal(){
+
+        password = $('#modal_pass').val();
+        action = 'POST';
+
+         $.ajax({
+             url: '{{route('mail.send')}}',
+             type: action,
+             data:{
+             _method: action,
+             _token: '{{csrf_token()}}',
+             user_id: '{{$user->staffId}}',
+             admin_id: '{{session()->get('staffId')}}',
+             feedback: feedback,
+             password: password
+             },
+             success: function(response){
+                 alert('Your Email has been sent');
+             },
+             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                 alert("Status: " + textStatus);
+                 alert("Error: " + errorThrown);
+             },
+             dataType: 'json'
+         });
+    }
+</script>
 @endsection
