@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMailJob;
 use App\Mail\mailSender;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -29,8 +31,10 @@ class MailController extends Controller
             return response()->json('Incorrect Password', 400);
         }
         */
+        $job = (new SendMailJob())->delay(Carbon::now()->addSeconds(10));
+        dispatch($job);
 
-        Mail::send(new mailSender);
         return response()->json(['message' => 'Email Sent'], 200);
+        return 'Email Sent';
     }
 }

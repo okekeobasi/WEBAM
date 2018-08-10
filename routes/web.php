@@ -14,18 +14,41 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/','AdminLoginController@showLoginForm');
 Route::prefix('/api')->group(function() {
+    /*
+        provide the attendance records between a date range
+        id, startDate, endDate
+    */
     Route::get('/dashboard', 'Api\AdminAPIController@testDate')->name('api.test');
+
+    /*
+        provide the attendance records between a date range with a provided limit
+        id,[startDate,endDate] or [ limit ]
+    */
     Route::get('/dashboard', 'Api\AdminAPIController@getEmployeeLog')->name('api.employee.log');
 
     Route::prefix('/report')->group(function() {
+
+        /*
+            Provide attendance records of a specific employee between a date range
+            id,[startDate,endDate] or [limit]
+        */
         Route::get('/employee', 'Api\AdminAPIController@employeeReport')->name('api.employee.report');
+
         Route::get('/attendance', 'Api\AdminAPIController@attendanceReport')->name('api.attendance.report');
     });
 
     Route::prefix('/config')->group(function () {
+        /*
+            Provide the attendance records of all employees in a department between a date range
+            id,[startDate,endDate] or [limit]
+        */
         Route::get('/department', 'Api\AdminAPIController@getDepartmentDate')->name('api.config.department');
     });
 
+     /*
+        Search for an employee's ID
+        [text]
+    */
     Route::get('/search', 'Api\AdminAPIController@sidebarSearch')->name('api.search');
 });
 

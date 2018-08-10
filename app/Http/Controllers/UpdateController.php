@@ -81,8 +81,13 @@ class UpdateController extends Controller
                     'email' => 'required|string|max:255',
                 ]);
             }//If not then return an error
-            else return redirect()->back()->withErrors(['email'=>'Wrong Email Address'])
-                ->withInput($request->except('password', 'password2'));
+            else{
+                $request->validate([
+                    'email' => 'required|string|max:255|unique:users',
+                ]);
+            }
+            /*return redirect()->back()->withErrors(['email'=>'Wrong Email Address'])
+                ->withInput($request->except('password', 'password2'));*/
         }//If it doesn't contain '@' then append the default email to it
         else {
             $request->email = $request->email . "@activedgetechnologies.com";

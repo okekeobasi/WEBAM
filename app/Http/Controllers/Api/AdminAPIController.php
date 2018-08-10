@@ -13,6 +13,12 @@ use Mockery\Exception;
 
 class AdminAPIController extends Controller
 {
+    /*provide the attendance records between a date range*/
+    /*
+        id
+        startDate
+        endDate
+    */
     public function testDate(Request $request){
         $id = $request->id;
         $startDate = $request->startDate;
@@ -22,6 +28,18 @@ class AdminAPIController extends Controller
         return response()->json($Attendance);
     }
 
+    /*provide the attendance records between a date range with a provided limit*/
+    /*
+        id,
+        [
+            startDate,
+            endDate
+        ]
+        [
+            limit
+        ]
+
+    */
     public function getEmployeeLog(Request $request){
         $id = $request->id;
         $limit = $request->limit;
@@ -39,6 +57,18 @@ class AdminAPIController extends Controller
         }
     }
 
+    /*Provide attendance records of a specific employee between a date range*/
+     /*
+        id,
+        [
+            startDate,
+            endDate
+        ]
+        [
+            limit
+        ]
+
+    */
     public function employeeReport(Request $request){
         $id = $request->id;
         $limit = $request->limit;
@@ -63,6 +93,18 @@ class AdminAPIController extends Controller
 
     public function attendanceReport(){}
 
+    /*Provide the attendance records of all employees in a department between a date range*/
+    /*
+        id,
+        [
+            startDate,
+            endDate
+        ]
+        [
+            limit
+        ]
+
+    */
     public function getDepartmentDate(Request $request){
         $id = $request->id;
         $limit = $request->limit;
@@ -79,6 +121,10 @@ class AdminAPIController extends Controller
         }
     }
 
+    /*
+        Search for an employee's ID
+        [text]
+    */
     public function sidebarSearch(Request $request){
         $name = $request->text;
 
@@ -106,7 +152,7 @@ class AdminAPIController extends Controller
 
 
 
-
+    /*Get the attendance records of an employee between a date range*/
     public function dashboard(Request $request){
         $id = $request->id;
         $startDate = $request->startDate;

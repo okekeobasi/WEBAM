@@ -132,6 +132,7 @@
     }
 
     function feebackModal(){
+        $('#passModal').modal('toggle');
 
         password = $('#modal_pass').val();
         action = 'POST';
@@ -151,8 +152,10 @@
                  alert('Your Email has been sent');
              },
              error: function (XMLHttpRequest, textStatus, errorThrown) {
-                 alert("Status: " + textStatus);
-                 alert("Error: " + errorThrown);
+//                 alert("Status: " + textStatus);
+//                 alert("Error: " + errorThrown);
+                 alert(textStatus);
+                 alert(errorThrown);
              },
              dataType: 'json'
          });
